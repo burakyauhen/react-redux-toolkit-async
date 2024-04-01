@@ -1,6 +1,13 @@
+import { useDispatch } from "react-redux";
+import { addTodo } from "../slices/todosSlice";
 
+const InputField = ({ text, setText }) => {
+    const dispatch = useDispatch();
 
-const InputField = ({ text, setText, addTodo}) => {
+    const handleClick = () => {
+        dispatch(addTodo({text}));
+        setText('');
+    }
 
     return (
         <label>
@@ -8,7 +15,7 @@ const InputField = ({ text, setText, addTodo}) => {
                 value={text}
                 onChange={(e) => setText(e.target.value)}
             />
-            <button onClick={addTodo}>add</button>
+            <button onClick={handleClick}>add</button>
         </label>
     );
 };
